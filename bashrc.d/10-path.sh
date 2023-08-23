@@ -14,3 +14,10 @@ export PATH="$HOME/bin:$PATH"
 
 # Add krew for kubectl
 export PATH="${KREW_ROOT:-$HOME/.config/krew}/bin:$PATH"
+
+# Add sapcar
+export PATH="/opt/sapcar:$PATH"
+
+# Add java
+export JAVA_HOME="/usr/lib/jvm/java"
+export PATH="$JAVA_HOME/bin:$PATH"
