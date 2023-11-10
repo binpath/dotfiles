@@ -16,5 +16,7 @@ for rcfile in "$DOTFILES"/bashrc.d/*.sh; do
   # shellcheck disable=SC1090
   source "$rcfile"
 done
-[ -f /usr/share/bash-completion/completions/fzf ] && source /usr/share/bash-completion/completions/fzf
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+# [ -f /usr/share/bash-completion/completions/fzf ] && source /usr/share/bash-completion/completions/fzf
+# [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
