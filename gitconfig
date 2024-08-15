@@ -1,6 +1,6 @@
 [user]
 	email = cfelce@gmail.com
-	name = Binpath
+	name = Cesar Felce
 [credential "https://github.com"]
 	username = binpath
 	helper = !gh auth git-credential
