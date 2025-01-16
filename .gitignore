@@ -1,4 +1,5 @@
 .DS_Store
+gitconfig
 *.swp
 .*.un~
 *~
@@ -11,6 +12,7 @@ id_rsa*
 known_hosts
 config/nvim/lua/packer_compiled.lua
 .env
+config/nvim/queries/cds/
 
 # Config files that contain sensitive info or are installed
 # there and don't need to be stored
@@ -34,6 +36,6 @@ config/newsboat/cache.db
 config/k9s/config.yml
 config/ookla/speedtest.json
 config/toot/
-config/ngrok/
 config/nvim/plugin/packer_compiled.lua
 config/pulse/
+config/krew/

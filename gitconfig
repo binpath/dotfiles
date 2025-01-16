@@ -14,3 +14,11 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+[safe]
+	directory = /work/*
+	directory = /work/gh/github.com/qmacro/qmacro.github.io
+	directory = /work/gh/github.com/SAP-samples/teched2024-developer-keynote/
+	directory = /work/gh/github.com/SAP-samples/teched2024-developer-keynote
+	directory = /work/gh/github.com/qmacro/sap-community-css
+	directory = /work/*
+	directory = *
