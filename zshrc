@@ -1,5 +1,8 @@
+# environment keys
+export $(grep -v '^#' ~/.env | xargs)
+
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/opt/node@16/bin:/usr/local/opt/openjdk@11/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -108,17 +111,33 @@ alias kve="kitchen verify"
 alias kde="kitchen destroy"
 alias klo="kitchen login"
 alias l="ls -latr"
+alias v='nvim'
 
 # terminal support
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-export FZF_BASE=/usr/local/Cellar/fzf/0.30.0
-export FZF_DEFUALT_COMMAND='rg --files --hidden --glob '"'"'!.git/'"'"i
 
-export LDFLAGS="-L/usr/local/opt/node@16/lib"
-export CPPFLAGS="-I/usr/local/opt/node@16/include:$CPPFLAGS"
-export CPPFLAGS="-I/usr/local/opt/openjdk@11/include:$CPPFLAGS"
+# EXTRA EXPORTS
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME=/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home
+export PATH="/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home/bin:$PATH"
 
-export OUTPUT_PATH='/Users/binpath/Documents/hackerrank/arrays/tests'
+[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
+
+CLOUDSDK_PYTHON="/opt/homebrew/bin/python3"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+#export FZF_BASE=/usr/local/Cellar/fzf/0.30.0
+#export FZF_DEFUALT_COMMAND='rg --files --hidden --glob '"'"'!.git/'"'"
+#export LDFLAGS="-L/usr/local/opt/node@16/lib"
+#export CPPFLAGS="-I/usr/local/opt/node@16/include:$CPPFLAGS"
+#export CPPFLAGS="-I/usr/local/opt/openjdk@11/include:$CPPFLAGS"
+#export OUTPUT_PATH='/Users/binpath/Documents/hackerrank/arrays/tests'
