@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 -- You can also add or configure plugins by creating files in this `plugins/` folder
 -- Here are some examples:
@@ -13,6 +13,26 @@ return {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
+  },
+
+    {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy", -- Load plugin lazily
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("chatgpt").setup({
+        -- Customize ChatGPT.nvim setup if needed
+        openai_params = {
+          model = "gpt-4",
+          max_tokens = 3000,
+          temperature = 0.7,
+        },
+      })
+    end,
   },
 
   -- == Examples of Overriding Plugins ==
@@ -82,4 +102,5 @@ return {
       )
     end,
   },
+
 }

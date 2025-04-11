@@ -40,3 +40,4 @@ alias vi=nvim
 alias vim=nvim
 
 alias gapi='gh api --paginate --cache 1h'
+alias pbcopy="xclip -sel clip"

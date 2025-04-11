@@ -123,6 +123,9 @@ export LANGUAGE=en_US.UTF-8
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME=/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home
 export PATH="/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home/bin:$PATH"
+export NVM_DIR="$HOME/.config/nvm"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 
