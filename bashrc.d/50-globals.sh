@@ -34,7 +34,7 @@ export CF_HOME="$HOME/.config/cf"
 # This is so I can use $HOSTHOME when invoking Docker from within
 # a container, but want to specify a bind-mount (which of course
 # must refer to the host OS filesystem).
-export HOSTHOME="/Users/I347491"
+export HOSTHOME="$HOME"
 
 
 export DOCKER_DEFAULT_PLATFORM=linux/amd64

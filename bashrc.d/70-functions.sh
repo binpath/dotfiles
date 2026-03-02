@@ -4,7 +4,7 @@ repo() {
   export REPO="$1"
 }
 
-g() {
+function g {
 
   # Change to a git repo
   # --------------------
@@ -51,7 +51,11 @@ authenv() {
 
 search() {
   local IFS="+"
-  open "https://google.com/search?q=$*"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    open "https://google.com/search?q=$*"
+  else
+    xdg-open "https://google.com/search?q=$*"
+  fi
 }
 
 focus() {
@@ -79,7 +83,11 @@ ssp() {
   ./pending > /tmp/pending.dat
   grep 'Best Practices' /tmp/pending.dat | pbcopy
   while read -r url; do
-    chrome-cli open "$url"
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      chrome-cli open "$url"
+    else
+      xdg-open "$url"
+    fi
   done < <(grep '^http' /tmp/pending.dat)
 
 }

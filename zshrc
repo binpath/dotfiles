@@ -1,5 +1,5 @@
 # environment keys
-export $(grep -v '^#' ~/.env | xargs)
+[ -f ~/.env ] && export $(grep -v '^#' ~/.env | xargs)
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -120,22 +120,37 @@ export LANGUAGE=en_US.UTF-8
 
 
 # EXTRA EXPORTS
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export JAVA_HOME=/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home
-export PATH="/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home/bin:$PATH"
-export NVM_DIR="$HOME/.config/nvm"
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
+# Java — macOS only (configure JAVA_HOME for Linux separately in ~/.private_envvars.sh)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if type brew &>/dev/null; then
+    export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
+  fi
+  [[ -d /opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home ]] && \
+    export JAVA_HOME=/opt/jdk/sapmachine-jdk-22.0.1.jdk/Contents/Home && \
+    export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+if [[ "$OSTYPE" == "darwin"* ]] && [ -n "${HOMEBREW_PREFIX:-}" ]; then
+  # macOS with Homebrew-installed nvm
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+  [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+else
+  # Standard nvm install (Linux or macOS without Homebrew nvm)
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
 
 [[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
 
-CLOUDSDK_PYTHON="/opt/homebrew/bin/python3"
+# Google Cloud SDK
+[[ "$OSTYPE" == "darwin"* ]] && type brew &>/dev/null && \
+  export CLOUDSDK_PYTHON="$(brew --prefix)/bin/python3"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 
 #export FZF_BASE=/usr/local/Cellar/fzf/0.30.0

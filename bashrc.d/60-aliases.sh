@@ -1,9 +1,9 @@
 # All aliases in here
 alias vi=vim
-alias kitty=/Applications/kitty.app/Contents/MacOS/kitty
+[[ "$OSTYPE" == "darwin"* ]] && alias kitty=/Applications/kitty.app/Contents/MacOS/kitty
 alias twt='[ "$TMUX" ] && tmux display-message -p "#W"'
 alias tm='tmux attach-session -t $(basename "$PWD") || tmux new-session -s $(basename "$PWD")'
-alias python=/usr/local/bin/python3
+alias python=python3
 alias cgr='cg && r'
 alias vig='vim -c "Goyo"'
 alias wfb='workflowbrowser'
@@ -21,7 +21,12 @@ alias ie='gh issue edit'
 alias ic='gh issue comment'
 
 # Show directory symbol (/) and hidden directories
-alias ls='ls -p -a --color=auto'
+# macOS BSD ls uses -G for colour; GNU ls (Linux) uses --color=auto
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias ls='ls -p -a -G'
+else
+  alias ls='ls -p -a --color=auto'
+fi
 
 # Single char aliases
 alias s='cd $HOME/work/scratch'
@@ -40,4 +45,5 @@ alias vi=nvim
 alias vim=nvim
 
 alias gapi='gh api --paginate --cache 1h'
-alias pbcopy="xclip -sel clip"
+# On Linux, provide pbcopy via xclip (macOS has it natively)
+[[ "$OSTYPE" != "darwin"* ]] && alias pbcopy="xclip -sel clip"
